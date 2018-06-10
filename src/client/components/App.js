@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import injectSheet from 'react-jss'
-import './app.css'
 
 const styles = {
   box: {
