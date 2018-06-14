@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
+
+import City from './City'
+import CreateCity from './CreateCity'
 
 @injectSheet({
   box: {
@@ -7,12 +11,17 @@ import injectSheet from 'react-jss'
   }
 })
 
+@connect(state => ({
+  cities: state.cities
+}))
+
 export default class Home extends Component {
   render() {
-    const { classes } = this.props
+    const { classes, cities } = this.props
     return (
       <div className={classes.box}>
-        Home
+        <CreateCity />
+        {cities.map((city, key) => <City {...{city, key}} />)}
       </div>
     )
   }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-import City from './City'
-import CreateCity from './CreateCity'
+import Menu from './Menu'
 
 @injectSheet({
   box: {
@@ -12,19 +11,13 @@ import CreateCity from './CreateCity'
   }
 })
 
-@connect(state => ({
-  cities: state.cities
-}), {})
-
 export default class App extends Component {
   render() {
-    const { classes, children, cities } = this.props
+    const { classes, children } = this.props
     return (
       <div className={classes.box}>
-        <Link to="/about">about</Link>
+        <Menu />
         {children}
-        <CreateCity />
-        {cities.map((city, key) => <City {...{city, key}} />)}
       </div>
     )
   }
