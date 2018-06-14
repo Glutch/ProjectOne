@@ -1,5 +1,7 @@
-import { fetchSomething } from './actions/general'
+import { fetchCities } from './actions/fetchCities'
+import { createCity } from './actions/createCity'
 
 export const runLogic = store => {
-  console.log('logic')
+  store.dispatch(fetchCities())
+  //store.dispatch(createCity({name: 'Göteborg', population: 2000}))
 }

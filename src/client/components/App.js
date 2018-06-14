@@ -1,29 +1,30 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import injectSheet from 'react-jss'
+import { Link } from 'react-router-dom'
 
-const styles = {
+import City from './City'
+import CreateCity from './CreateCity'
+
+@injectSheet({
   box: {
-    background: 'blue'
+    fontFamily: 'sans-serif'
   }
-}
+})
 
-@injectSheet(styles)
+@connect(state => ({
+  cities: state.cities
+}), {})
+
 export default class App extends Component {
-
-  state = { username: null }
-
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }))
-  }
-
   render() {
-    const { classes } = this.props
-    const { username } = this.state
+    const { classes, children, cities } = this.props
     return (
-      <div>
-        <h1 className={classes.box}>{username ? `hello ${username}` : 'Loading...'}</h1>
+      <div className={classes.box}>
+        <Link to="/about">about</Link>
+        {children}
+        <CreateCity />
+        {cities.map((city, key) => <City {...{city, key}} />)}
       </div>
     )
   }

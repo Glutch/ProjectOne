@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import general from './general'
+import cities from './cities'
 
 const reducer = combineReducers({
-  general
+  cities
 })
 
 export default reducer
